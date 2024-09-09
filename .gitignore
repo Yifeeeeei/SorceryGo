@@ -1,0 +1,16 @@
+*
+!/.gitignore
+!/card_maker
+!/card_maker/**
+
+!go.mod
+!go.sum
+!main.go
+!make_card_test.go
+!mass_producer_params.go
+!mass_producer.go
+!template_mass_producer_params_xlsx.go
+
+!DeckBuild.lua
+!README.md
+!makefile
