@@ -14,3 +14,7 @@
 !DeckBuild.lua
 !README.md
 !makefile
+
+!gen.sh
+!produce.sh
+!test.sh

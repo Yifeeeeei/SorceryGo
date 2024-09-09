@@ -33,6 +33,32 @@ make test
 Generate settings:
 
 ```bash
+sh gen.sh
+```
+
+config mass_producer_params_xlsx.json
+
+then
+
+```bash
+sh produce.sh
+```
+
+All output will be in output dir
+
+to test your own card, go to file make_card_test.go
+
+then
+
+```bash
+sh test.sh
+```
+
+## or directly use go
+
+Generate settings:
+
+```bash
 go run github.com/Yifeeeeei/sorcery_go gen
 ```
 
