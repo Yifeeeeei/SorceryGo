@@ -9,7 +9,7 @@
 !make_card_test.go
 !mass_producer_params.go
 !mass_producer.go
-!template_mass_producer_params_xlsx.go
+!template_mass_producer_params_xlsx.json
 
 !DeckBuild.lua
 !README.md

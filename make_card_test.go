@@ -11,6 +11,8 @@ import (
 func TestGen(t *testing.T) {
 	// TestGen is a test function.
 	// it will always take drawing.jpg as the drawing image
+	// -- change below
+	drawingPath := "."
 
 	cardInfo := &card_maker.CardInfo{
 		Number:      "1111111",
@@ -36,8 +38,9 @@ func TestGen(t *testing.T) {
 		Attack:   1,
 		Life:     2,
 	}
+	// -- change above
 
-	config := card_maker.NewDefaultConfig(2, "card_maker/resources/general", ".", "card_maker/resources/fonts")
+	config := card_maker.NewDefaultConfig(2, "card_maker/resources/general", drawingPath, "card_maker/resources/fonts")
 
 	cardMaker := card_maker.NewCardMaker(config)
 	img, err := cardMaker.MakeCard(cardInfo)
