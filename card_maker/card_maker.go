@@ -769,96 +769,6 @@ func (cardMaker *CardMaker) drawDescriptionAndQuote(baseImage *image.RGBA, cardI
 	return baseImage, nil
 }
 
-// follow the pattern and conver the below python code block to go
-// def draw_gain(self, card_info: CardInfo, base_image: PIL.Image):
-// # estimate the length
-// all_gains = []
-// for ele in card_info.elements_gain.keys():
-// 	if card_info.elements_gain[ele] > 0:
-// 		all_gains.append((ele, card_info.elements_gain[ele]))
-// # nothing to do here
-// if len(all_gains) == 0:
-// 	return base_image
-
-// font = PIL.ImageFont.truetype(
-// 	os.path.join(self.config.font_path, self.config.gain_font),
-// 	self.config.gain_font_size,
-// )
-
-// number_length = 0
-// for tup in all_gains:
-// 	number_length += font.getsize(str(tup[1]))[0]
-// category_length = len(all_gains) * self.config.gain_category_width
-// total_length = (
-// 	number_length
-// 	+ category_length
-// 	+ len(all_gains) * self.config.gain_padding * 2
-// 	+ self.config.gain_padding
-// )
-// # draw the rectangle
-// rect_top = self.config.gain_rect_top
-// rect_right = self.config.gain_rect_right
-// rect_left = rect_right - total_length
-// rect_bottom = rect_top + self.config.gain_rect_height
-// base_image = self.draw_round_corner_rectangle(
-// 	base_image,
-// 	(rect_left, rect_top, rect_right, rect_bottom),
-// 	self.config.gain_rect_radius,
-// 	self.get_rect_fill_color(card_info),
-// 	self.get_rect_outline_color(card_info),
-// 	self.config.gain_rect_outline_width,
-// )
-// # put in the numbers and categories
-// text_height = font.getsize("8")[1]
-// right_pointer = (
-// 	rect_right - self.config.gain_padding - self.config.gain_category_width
-// )
-
-// text_top = int(
-// 	rect_top
-// 	+ (self.config.gain_rect_height - text_height) / 2
-// 	- self.config.gain_font_compensation
-// )
-// category_top = int(
-// 	rect_top
-// 	+ (self.config.gain_rect_height - self.config.gain_category_width) / 2
-// )
-// # sort all gains, put the corresponding element to the head
-// for tup in all_gains:
-// 	if tup[0] == card_info.category:
-// 		all_gains.remove(tup)
-// 		all_gains.insert(0, tup)
-// 		break
-// all_gains = reversed(all_gains)
-// # draw the elements
-// for tup in all_gains:
-// 	# draw the category
-// 	category_image = self.get_category_image(tup[0])
-// 	category_image = self.adjust_image(
-// 		category_image,
-// 		(
-// 			self.config.gain_category_width,
-// 			self.config.gain_category_width,
-// 		),
-// 	)
-// 	base_image.paste(
-// 		category_image,
-// 		(right_pointer, category_top),
-// 		mask=category_image,
-// 	)
-// 	right_pointer -= font.getsize(str(tup[1]))[0] + self.config.gain_padding
-
-// 	# draw the number
-// 	base_image = self.add_text_on_image(
-// 		base_image,
-// 		str(tup[1]),
-// 		(right_pointer, text_top),
-// 		font,
-// 		self.config.gain_font_color,
-// 	)
-// 	right_pointer -= self.config.gain_category_width + self.config.gain_padding
-
-// return base_image
 func (cardMaker *CardMaker) drawGain(baseImage *image.RGBA, cardInfo *CardInfo) (*image.RGBA, error) {
 	allGains := []ElemAndVal{}
 	for ele, val := range cardInfo.ElementsGain {
@@ -946,133 +856,6 @@ func (cardMaker *CardMaker) getLifeImage() (*image.RGBA, error) {
 	return cardMaker.getImageWithoutExtension(filepath.Join(cardMaker.Config.GeneralPath, "life"))
 }
 
-// follow the pattern and conver the below python code block to go
-// def draw_life_and_attack(self, card_info: CardInfo, base_image: PIL.Image):
-//         left_pointer = 0
-//         if card_info.life < 0:
-//             pass
-//         else:
-//             life_image = self.get_life_image()
-//             life_image = self.adjust_image(
-//                 life_image, (self.config.life_icon_width, self.config.life_icon_width)
-//             )
-//             font = PIL.ImageFont.truetype(
-//                 os.path.join(self.config.font_path, self.config.life_font),
-//                 self.config.life_font_size,
-//             )
-//             estimated_length = (
-//                 font.getsize(str(card_info.life))[0]
-//                 + self.config.life_padding * 3
-//                 + self.config.life_icon_width
-//             )
-//             left = self.config.life_rect_left
-//             top = self.config.life_rect_top
-//             right = left + estimated_length
-//             bottom = top + self.config.life_rect_height
-//             base_image = self.draw_round_corner_rectangle(
-//                 base_image,
-//                 (left, top, right, bottom),
-//                 self.config.life_rect_radius,
-//                 self.get_rect_fill_color(card_info),
-//                 self.get_rect_outline_color(card_info),
-//                 self.config.life_rect_outline_width,
-//             )
-
-//             left_pointer = left + self.config.life_padding
-//             life_top = int(
-//                 self.config.life_rect_top
-//                 + (self.config.life_rect_height - self.config.life_icon_width) / 2
-//             )
-//             base_image.paste(
-//                 life_image,
-//                 (left_pointer, life_top),
-//                 mask=life_image,
-//             )
-//             left_pointer += self.config.life_icon_width + self.config.life_padding
-//             life_text_top = int(
-//                 self.config.life_rect_top
-//                 + (self.config.life_rect_height - font.getsize(str(card_info.life))[1])
-//                 / 2
-//                 - self.config.life_font_compensation
-//             )
-//             base_image = self.add_text_on_image(
-//                 base_image,
-//                 str(card_info.life),
-//                 (left_pointer, life_text_top),
-//                 font,
-//                 self.config.life_font_color,
-//             )
-
-//             # return base_image
-
-//         if card_info.attack < 0:
-//             pass
-//         else:
-//             attack_image = self.get_attack_image()
-//             attack_image = self.adjust_image(
-//                 attack_image,
-//                 (self.config.attack_icon_width, self.config.attack_icon_width),
-//             )
-//             font = PIL.ImageFont.truetype(
-//                 os.path.join(self.config.font_path, self.config.attack_font),
-//                 self.config.attack_font_size,
-//             )
-//             estimated_length = (
-//                 font.getsize(str(card_info.attack))[0]
-//                 + self.config.attack_padding * 3
-//                 + self.config.attack_icon_width
-//             )
-//             # adjust left pointer
-//             if card_info.life < 0:
-//                 left_pointer = self.config.life_rect_left
-//             else:
-//                 left_pointer += (
-//                     self.config.life_rect_left
-//                     + self.config.life_padding
-//                     + font.getsize(str(card_info.life))[0]
-//                 )
-
-//	left = left_pointer
-//	top = self.config.attack_rect_top
-//	right = left + estimated_length
-//	bottom = top + self.config.attack_rect_height
-//	base_image = self.draw_round_corner_rectangle(
-//	    base_image,
-//	    (left, top, right, bottom),
-//	    self.config.attack_rect_radius,
-//	    self.get_rect_fill_color(card_info),
-//	    self.get_rect_outline_color(card_info),
-//	    self.config.attack_rect_outline_width,
-//	)
-//	left_pointer = left + self.config.attack_padding
-//	attack_top = int(
-//	    self.config.attack_rect_top
-//	    + (self.config.attack_rect_height - self.config.attack_icon_width) / 2
-//	)
-//	base_image.paste(
-//	    attack_image,
-//	    (left_pointer, attack_top),
-//	    mask=attack_image,
-//	)
-//	left_pointer += self.config.attack_icon_width + self.config.attack_padding
-//	attack_text_top = int(
-//	    self.config.attack_rect_top
-//	    + (
-//	        self.config.attack_rect_height
-//	        - font.getsize(str(card_info.attack))[1]
-//	    )
-//	    / 2
-//	    - self.config.attack_font_compensation
-//	)
-//	base_image = self.add_text_on_image(
-//	    base_image,
-//	    str(card_info.attack),
-//	    (left_pointer, attack_text_top),
-//	    font,
-//	    self.config.attack_font_color,
-//	)
-//
-// return base_image
 func (cardMaker *CardMaker) drawLifeAndAttack(baseImage *image.RGBA, cardInfo *CardInfo) (*image.RGBA, error) {
 	leftPointer := 0
 	if cardInfo.Life < 0 {
@@ -1187,80 +970,6 @@ func (cardMaker *CardMaker) getDurationImage() (*image.RGBA, error) {
 	return cardMaker.getImageWithoutExtension(filepath.Join(cardMaker.Config.GeneralPath, "duration"))
 }
 
-// follow the pattern and conver the below python code block to go
-// def draw_power_or_duration(self, card_info: CardInfo, base_image: PIL.Image):
-//         image = None
-//         text = ""
-//         if card_info.duration < 0 and card_info.power < 0:
-//             return base_image
-//         if card_info.duration >= 0:
-//             image = self.get_duration_image()
-//             text = str(card_info.duration)
-//         else:
-//             image = self.get_power_image()
-//             text = str(card_info.power)
-//         image = self.adjust_image(
-//             image,
-//             (
-//                 self.config.power_or_duration_icon_width,
-//                 self.config.power_or_duration_icon_width,
-//             ),
-//         )
-//         font = PIL.ImageFont.truetype(
-//             os.path.join(self.config.font_path, self.config.power_or_duration_font),
-//             self.config.power_or_duration_font_size,
-//         )
-//         estimated_length = (
-//             font.getsize(text)[0]
-//             + self.config.power_or_duration_padding * 3
-//             + self.config.power_or_duration_icon_width
-//         )
-//         right = self.config.power_or_duration_rect_right
-//         top = self.config.power_or_duration_rect_top
-//         left = right - estimated_length
-//         bottom = top + self.config.power_or_duration_rect_height
-//         base_image = self.draw_round_corner_rectangle(
-//             base_image,
-//             (left, top, right, bottom),
-//             self.config.power_or_duration_rect_radius,
-//             self.get_rect_fill_color(card_info),
-//             self.get_rect_outline_color(card_info),
-//             self.config.power_or_duration_rect_outline_width,
-//         )
-
-//         right_pointer = (
-//             right - self.config.power_or_duration_padding - font.getsize(text)[0]
-//         )
-//         power_or_duration_text_top = int(
-//             self.config.power_or_duration_rect_top
-//             + (self.config.power_or_duration_rect_height - font.getsize(text)[1]) / 2
-//             - self.config.power_or_duration_font_compensation
-//         )
-//         base_image = self.add_text_on_image(
-//             base_image,
-//             text,
-//             (right_pointer, power_or_duration_text_top),
-//             font,
-//             self.config.power_or_duration_font_color,
-//         )
-//         right_pointer -= self.config.life_icon_width + self.config.life_padding
-//         power_or_duration_top = int(
-//             self.config.power_or_duration_rect_top
-//             + (
-//                 self.config.power_or_duration_rect_height
-//                 - self.config.power_or_duration_icon_width
-//             )
-//             / 2
-//         )
-
-//         base_image.paste(
-//             image,
-//             (right_pointer, power_or_duration_top),
-//             mask=image,
-//         )
-
-//         return base_image
-
 func (cardMaker *CardMaker) drawPowerOrDuration(baseImage *image.RGBA, cardInfo *CardInfo) (*image.RGBA, error) {
 	var image *image.RGBA
 	var text string
@@ -1323,101 +1032,6 @@ func (cardMaker *CardMaker) drawPowerOrDuration(baseImage *image.RGBA, cardInfo 
 	)
 	return baseImage, nil
 }
-
-// follow the pattern and conver the below python code block to go
-// def draw_expense(self, card_info: CardInfo, base_image: PIL.Image):
-//         # estimate the length
-//         all_expenses = []
-//         for ele in card_info.elements_expense.keys():
-//             if card_info.elements_expense[ele] > 0:
-//                 all_expenses.append((ele, card_info.elements_expense[ele]))
-//         # nothing to do here
-//         if len(all_expenses) == 0:
-//             return base_image
-
-//         font = PIL.ImageFont.truetype(
-//             os.path.join(self.config.font_path, self.config.expense_font),
-//             self.config.expense_font_size,
-//         )
-
-//         number_length = 0
-//         for tup in all_expenses:
-//             number_length += font.getsize(str(tup[1]))[0]
-//         category_length = len(all_expenses) * self.config.expense_category_width
-//         total_length = (
-//             number_length
-//             + category_length
-//             + len(all_expenses) * self.config.expense_padding * 2
-//             + self.config.expense_padding
-//         )
-//         # draw the rectangle
-//         rect_top = self.config.expense_rect_top
-//         rect_right = self.config.expense_rect_right
-//         rect_left = rect_right - total_length
-//         rect_bottom = rect_top + self.config.expense_rect_height
-//         base_image = self.draw_round_corner_rectangle(
-//             base_image,
-//             (rect_left, rect_top, rect_right, rect_bottom),
-//             self.config.expense_rect_radius,
-//             self.get_rect_fill_color(card_info),
-//             self.get_rect_outline_color(card_info),
-//             self.config.expense_rect_outline_width,
-//         )
-//         # put in the numbers and categories
-//         text_height = font.getsize("8")[1]
-//         right_pointer = (
-//             rect_right
-//             - self.config.expense_padding
-//             - self.config.expense_category_width
-//         )
-
-//         text_top = int(
-//             rect_top
-//             + (self.config.expense_rect_height - text_height) / 2
-//             - self.config.expense_font_compensation
-//         )
-//         category_top = int(
-//             rect_top
-//             + (self.config.expense_rect_height - self.config.expense_category_width) / 2
-//         )
-//         # sort all expenses, put the corresponding element to the head
-//         for tup in all_expenses:
-//             if tup[0] == card_info.category:
-//                 all_expenses.remove(tup)
-//                 all_expenses.insert(0, tup)
-//                 break
-//         all_expenses = reversed(all_expenses)
-//         # draw the elements
-//         for tup in all_expenses:
-//             # draw the category
-//             category_image = self.get_category_image(tup[0])
-//             category_image = self.adjust_image(
-//                 category_image,
-//                 (
-//                     self.config.expense_category_width,
-//                     self.config.expense_category_width,
-//                 ),
-//             )
-//             base_image.paste(
-//                 category_image,
-//                 (right_pointer, category_top),
-//                 mask=category_image,
-//             )
-//             right_pointer -= font.getsize(str(tup[1]))[0] + self.config.expense_padding
-
-//             # draw the number
-//             base_image = self.add_text_on_image(
-//                 base_image,
-//                 str(tup[1]),
-//                 (right_pointer, text_top),
-//                 font,
-//                 self.config.expense_font_color,
-//             )
-//             right_pointer -= (
-//                 self.config.expense_category_width + self.config.expense_padding
-//             )
-
-//         return base_image
 
 func (cardMaker *CardMaker) drawExpense(baseImage *image.RGBA, cardInfo *CardInfo) (*image.RGBA, error) {
 	allExpenses := []ElemAndVal{}
@@ -1499,30 +1113,6 @@ func (cardMaker *CardMaker) drawExpense(baseImage *image.RGBA, cardInfo *CardInf
 	return baseImage, nil
 }
 
-// def draw_number(self, card_info: CardInfo, base_image: PIL.Image):
-//
-//	font = PIL.ImageFont.truetype(
-//	    os.path.join(self.config.font_path, self.config.number_font),
-//	    self.config.number_font_size,
-//	)
-//	color = self.config.number_font_color
-//	if self.config.reverse_color_for_hero and card_info.type == "英雄":
-//	    color = self.reverse_color(color)
-//	base_image = self.add_text_on_image(
-//	    base_image,
-//	    "No." + str(card_info.number),
-//	    (
-//	        self.config.card_width
-//	        - self.config.number_text_to_right
-//	        - font.getsize("No." + str(card_info.number))[0],
-//	        self.config.drawing_to_upper
-//	        + self.config.drawing_height
-//	        + self.config.number_text_to_block_top,
-//	    ),
-//	    font,
-//	    color,
-//	)
-//	return base_image
 func (cardMaker *CardMaker) drawNumber(baseImage *image.RGBA, cardInfo *CardInfo) (*image.RGBA, error) {
 	font, err := cardMaker.loadFont(filepath.Join(cardMaker.Config.FontPath, cardMaker.Config.NumberFont))
 	if err != nil {
@@ -1583,29 +1173,6 @@ func (cardMaker *CardMaker) makeUnitCard(cardInfo *CardInfo) (*image.RGBA, error
 	return baseImage, nil
 }
 
-// def make_ability_card(self, card_info: CardInfo):
-// # 准备底层
-// base_image = self.prepare_outline(card_info)
-// # 准备左上角元素+名称
-// base_image = self.draw_category_and_name(card_info, base_image)
-// # 准备费用
-// base_image = self.draw_cost(card_info, base_image)
-// # 准备代价
-// base_image = self.draw_expense(card_info, base_image)
-// # 准备类别logo
-// base_image = self.draw_type_logo(card_info, base_image)
-// # 准备标签
-// base_image = self.draw_tag(card_info, base_image)
-// # 准备卡牌描述和引言
-// base_image = self.draw_discription_and_quote(card_info, base_image)
-// # 准备威力或持续时间
-// base_image = self.draw_power_or_duration(card_info, base_image)
-// # 准备卡牌编号
-// base_image = self.draw_number(card_info, base_image)
-// # 准备生命和攻击
-// base_image = self.draw_life_and_attack(card_info, base_image)
-// return base_image
-
 func (cardMaker *CardMaker) makeAbilityCard(cardInfo *CardInfo) (*image.RGBA, error) {
 	baseImage, err := cardMaker.prepareOutline(cardInfo)
 	if err != nil {
@@ -1649,31 +1216,6 @@ func (cardMaker *CardMaker) makeAbilityCard(cardInfo *CardInfo) (*image.RGBA, er
 	}
 	return baseImage, nil
 }
-
-// def make_item_card(self, card_info: CardInfo):
-// # 准备底层
-// base_image = self.prepare_outline(card_info)
-// # 准备左上角元素+名称
-// base_image = self.draw_category_and_name(card_info, base_image)
-// # 准备费用
-// base_image = self.draw_cost(card_info, base_image)
-// # 准备代价
-// base_image = self.draw_expense(card_info, base_image)
-// # 准备类别logo
-// base_image = self.draw_type_logo(card_info, base_image)
-// # 准备标签
-// base_image = self.draw_tag(card_info, base_image)
-// # 准备卡牌描述和引言
-// base_image = self.draw_discription_and_quote(card_info, base_image)
-// # 准备底部负载
-// base_image = self.draw_gain(card_info, base_image)
-// # 准备威力或者持续
-// base_image = self.draw_power_or_duration(card_info, base_image)
-// # 准备卡牌编号
-// base_image = self.draw_number(card_info, base_image)
-// # 绘制生命和攻击
-// base_image = self.draw_life_and_attack(card_info, base_image)
-// return base_image
 
 func (cardMaker *CardMaker) makeItemCard(cardInfo *CardInfo) (*image.RGBA, error) {
 	baseImage, err := cardMaker.prepareOutline(cardInfo)
@@ -1723,27 +1265,6 @@ func (cardMaker *CardMaker) makeItemCard(cardInfo *CardInfo) (*image.RGBA, error
 	return baseImage, nil
 }
 
-// def make_hero_card(self, card_info: CardInfo):
-// # 准备底层
-// base_image = self.prepare_outline(card_info)
-// # 准备左上角元素+名称
-// base_image = self.draw_category_and_name(card_info, base_image)
-// # 准备费用
-// base_image = self.draw_cost(card_info, base_image)
-// # 准备类别logo
-// base_image = self.draw_type_logo(card_info, base_image)
-// # 准备标签
-// base_image = self.draw_tag(card_info, base_image)
-// # 准备卡牌描述和引言
-// base_image = self.draw_discription_and_quote(card_info, base_image)
-// # 准备底部负载
-// base_image = self.draw_gain(card_info, base_image)
-// # 准备生命和攻击
-// base_image = self.draw_life_and_attack(card_info, base_image)
-// # 准备卡牌编号
-// base_image = self.draw_number(card_info, base_image)
-// return base_image
-
 func (cardMaker *CardMaker) makeHeroCard(cardInfo *CardInfo) (*image.RGBA, error) {
 	baseImage, err := cardMaker.prepareOutline(cardInfo)
 	if err != nil {
@@ -1783,21 +1304,6 @@ func (cardMaker *CardMaker) makeHeroCard(cardInfo *CardInfo) (*image.RGBA, error
 	}
 	return baseImage, nil
 }
-
-// def make_card(self, card_info: CardInfo):
-// card_type = self.get_card_type_from_card_number(card_info)
-// if card_type == "生物":
-// 	result = self.make_unit_card(card_info)
-// 	return result
-// elif card_type == "技能":
-// 	result = self.make_ability_card(card_info)
-// 	return result
-// elif card_type == "道具":
-// 	result = self.make_item_card(card_info)
-// 	return result
-// elif card_type == "英雄":
-// 	result = self.make_hero_card(card_info)
-// 	return result
 
 func (cardMaker *CardMaker) MakeCard(cardInfo *CardInfo) (*image.RGBA, error) {
 	cardType := cardMaker.GetCardType(cardInfo)
