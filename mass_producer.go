@@ -193,7 +193,7 @@ func (m *MassProducer) getCardInfoFromRow(row Row, versionName string) (*card_ma
 		cardInfo.ElementsCost = *m.elementAnalysis(m.cleanString(row["条件"]))
 	}
 	if _, ok := row["负载"]; ok {
-		cardInfo.ElementsExpense = *m.elementAnalysis(m.cleanString(row["负载"]))
+		cardInfo.ElementsGain = *m.elementAnalysis(m.cleanString(row["负载"]))
 	}
 	if _, ok := row["效果"]; ok {
 		cardInfo.Description = m.cleanString(row["效果"])
