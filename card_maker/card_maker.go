@@ -754,6 +754,7 @@ func (cardMaker *CardMaker) drawDescriptionAndQuote(baseImage *image.RGBA, cardI
 	if cardMaker.Config.ReverseColorForHero && cardMaker.GetCardType(cardInfo) == TYPE_HERO_ZH {
 		quoteColor = cardMaker.reverseColor(quoteColor)
 	}
+	slices.Reverse(quoteWrappedText)
 	for _, line := range quoteWrappedText {
 		baseImage = cardMaker.addTextToImage(
 			baseImage,
