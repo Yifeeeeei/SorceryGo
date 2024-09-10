@@ -191,9 +191,13 @@ func (m *MassProducer) getCardInfoFromRow(row Row, versionName string) (*card_ma
 	}
 	if _, ok := row["条件"]; ok {
 		cardInfo.ElementsCost = *m.elementAnalysis(m.cleanString(row["条件"]))
+	} else {
+		cardInfo.ElementsCost = card_maker.Elements{}
 	}
 	if _, ok := row["负载"]; ok {
 		cardInfo.ElementsGain = *m.elementAnalysis(m.cleanString(row["负载"]))
+	} else {
+		cardInfo.ElementsGain = card_maker.Elements{}
 	}
 	if _, ok := row["效果"]; ok {
 		cardInfo.Description = m.cleanString(row["效果"])
@@ -219,6 +223,8 @@ func (m *MassProducer) getCardInfoFromRow(row Row, versionName string) (*card_ma
 	}
 	if _, ok := row["代价"]; ok {
 		cardInfo.ElementsExpense = *m.elementAnalysis(m.cleanString(row["代价"]))
+	} else {
+		cardInfo.ElementsExpense = card_maker.Elements{}
 	}
 	if _, ok := row["攻击"]; ok {
 		cardInfo.Attack, err = strconv.Atoi(m.cleanString(row["攻击"]))
@@ -252,6 +258,8 @@ func (m *MassProducer) getCardInfoFromRow(row Row, versionName string) (*card_ma
 				continue
 			}
 		}
+	} else {
+		cardInfo.Spawns = []string{}
 	}
 
 	cardInfo.VersionNumber = string([]rune(cardInfo.Number)[3:5])
@@ -446,7 +454,6 @@ func (m *MassProducer) dealWithXlsx(xlsxPath, drawingPath, versionName string, p
 		wg.Add(1)
 		go func() {
 			m.dealWithSheet(xlsxFile, sheetName, versionName, drawingPath)
-			bar.Increment()
 			defer wg.Done()
 		}()
 	}
