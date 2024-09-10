@@ -262,7 +262,7 @@ func (m *MassProducer) getCardInfoFromRow(row Row, versionName string) (*card_ma
 		cardInfo.Spawns = []string{}
 	}
 
-	cardInfo.VersionNumber = string([]rune(cardInfo.Number)[3:5])
+	cardInfo.VersionNumber = string([]rune(cardInfo.Number)[3:4])
 	cardInfo.VersionName = versionName
 	tmpCardMaker := &card_maker.CardMaker{}
 	cardInfo.Type = tmpCardMaker.GetCardType(cardInfo)
@@ -454,6 +454,7 @@ func (m *MassProducer) dealWithXlsx(xlsxPath, drawingPath, versionName string, p
 		wg.Add(1)
 		go func() {
 			m.dealWithSheet(xlsxFile, sheetName, versionName, drawingPath)
+			bar.Increment()
 			defer wg.Done()
 		}()
 	}
