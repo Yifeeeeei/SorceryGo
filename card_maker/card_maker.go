@@ -859,9 +859,7 @@ func (cardMaker *CardMaker) getLifeImage() (*image.RGBA, error) {
 
 func (cardMaker *CardMaker) drawLifeAndAttack(baseImage *image.RGBA, cardInfo *CardInfo) (*image.RGBA, error) {
 	leftPointer := 0
-	if cardInfo.Life < 0 {
-		return baseImage, nil
-	} else {
+	if cardInfo.Life >= 0 {
 		lifeImage, err := cardMaker.getLifeImage()
 		if err != nil {
 			return baseImage, err
