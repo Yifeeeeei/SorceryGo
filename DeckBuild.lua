@@ -40,15 +40,15 @@ local deck_builder_button
 local input_str = ""
 
 local deck_builder_input_position = {
-    x = -35,
+    x = 0,
     y = 1,
-    z = -7
+    z = 3
 }
 
 local deck_builder_button_position = {
-    x = -35,
+    x = 0,
     y = 1,
-    z = -18
+    z = -2
 }
 
 -- game rule
@@ -67,10 +67,10 @@ function onLoad()
     print("setUpDeckBuilderInput")
 
     fetchJsonData(jsonUrl)
-    setUpCollectionTiles()
+    -- setUpCollectionTiles()
     setUpDeckBuilder()
-    setUpGameRule()
-    setUpTexts()
+    -- setUpGameRule()
+    -- setUpTexts()
 end
 
 function createTileButtonAtPostion(position, tileFrontImageUrl, tileBackImageUrl, buttonHint, onClickFunctionName)
@@ -212,7 +212,7 @@ function setUpTexts()
     spawnText("组卡器", {
         x = deck_builder_input_position.x,
         y = deck_builder_input_position.y + 0.5,
-        z = deck_builder_input_position.z + 3
+        z = deck_builder_input_position.z - 11
     }, 4)
     -- hero
     spawnText("英雄", {
@@ -359,9 +359,9 @@ function setUpDeckBuilderInput()
             z = deck_builder_input_position.z
         },
         scale = {
-            x = 1,
+            x = 0.5,
             y = 1,
-            z = 1
+            z = 0.5
         },
         callback_function = function(obj)
             obj.setLock(true)
@@ -376,8 +376,8 @@ function setUpDeckBuilderInput()
             y = 3,
             z = 0
         },
-        width = 800,
-        height = 500,
+        width = 500,
+        height = 470,
         function_owner = self,
         input_function = "input_func",
         interactable = true,
@@ -401,9 +401,9 @@ function setUpDeckBuilderButton()
             z = deck_builder_button_position.z
         },
         scale = {
-            x = 0.5,
+            x = 0.25,
             y = 0.5,
-            z = 0.5
+            z = 0.25
         },
         callback_function = function(obj)
             obj.setLock(true)
@@ -466,7 +466,7 @@ function buildDeckByDeckCode(deck_code)
                 setUpDeck(card_codes, {
                     x = deck_builder_button_position.x - 8 + pile_created * 4,
                     y = deck_builder_button_position.y,
-                    z = deck_builder_button_position.z + 18
+                    z = deck_builder_button_position.z + 88
                 })
                 pile_created = pile_created + 1
                 card_codes = {}
@@ -481,7 +481,7 @@ function buildDeckByDeckCode(deck_code)
         setUpDeck(card_codes, {
             x = deck_builder_button_position.x - 8 + pile_created * 4,
             y = deck_builder_button_position.y,
-            z = deck_builder_button_position.z + 18
+            z = deck_builder_button_position.z + 8
         })
         pile_created = pile_created + 1
         card_codes = {}
