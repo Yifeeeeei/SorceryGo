@@ -466,7 +466,7 @@ function buildDeckByDeckCode(deck_code)
                 setUpDeck(card_codes, {
                     x = deck_builder_button_position.x - 8 + pile_created * 4,
                     y = deck_builder_button_position.y,
-                    z = deck_builder_button_position.z + 88
+                    z = deck_builder_button_position.z + 8
                 })
                 pile_created = pile_created + 1
                 card_codes = {}
