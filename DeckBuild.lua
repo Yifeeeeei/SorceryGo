@@ -355,12 +355,12 @@ function setUpDeckBuilderInput()
         type = "notecard",
         position = {
             x = deck_builder_input_position.x,
-            y = deck_builder_input_position.y,
+            y = deck_builder_input_position.y - 0.1,
             z = deck_builder_input_position.z
         },
         scale = {
             x = 0.5,
-            y = 1,
+            y = 0.5,
             z = 0.5
         },
         callback_function = function(obj)
