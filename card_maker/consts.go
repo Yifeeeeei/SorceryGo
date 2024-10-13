@@ -17,8 +17,8 @@ const (
 	ELEM_DARK_EN  = "dark"
 	ELEM_NONE_EN  = "none"
 
-	TYPE_HERO_ZH    = "英雄"
-	TYPE_UNIT_ZH    = "生物"
+	TYPE_HERO_ZH    = "人物"
+	TYPE_UNIT_ZH    = "伙伴"
 	TYPE_ABILITY_ZH = "技能"
 	TYPE_ITEM_ZH    = "道具"
 )
