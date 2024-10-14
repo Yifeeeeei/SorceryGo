@@ -327,7 +327,7 @@ func NewDefaultConfig(sizeRatio int, generalPath, drawingPath, fontPath string) 
 		DrawingToUpper:          35 * sizeRatio,
 		BorderWidth:             580 * sizeRatio,
 		BorderHeight:            830 * sizeRatio,
-		TypeBorder:              map[string]string{"生物": "border_unit", "技能": "border_ability", "道具": "border_item"},
+		TypeBorder:              map[string]string{"伙伴": "border_unit", "技能": "border_ability", "道具": "border_item"},
 		ReverseColorForHero:     true,
 		BottomBlockWidth:        540 * sizeRatio,
 		BottomBlockHeight:       260 * sizeRatio,
