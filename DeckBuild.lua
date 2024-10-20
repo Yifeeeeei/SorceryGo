@@ -3,7 +3,7 @@
 local DEBUGGING = false
 
 local card_table = {}
-local resource_url = "https://yifeeeeei.github.io/SorceryImages/"
+local resource_url = "https://yifeeeeei.github.io/ArcaneImages/"
 
 local one_deck_capacity = 1000
 
@@ -62,7 +62,7 @@ local game_rule_position = {
 
 function onLoad()
     print("onLoad")
-    local jsonUrl = "https://yifeeeeei.github.io/SorceryImages/output/simplified_card_infos.json" -- Replace this with your actual JSON URL
+    local jsonUrl = "https://yifeeeeei.github.io/ArcaneImages/output/simplified_card_infos.json" -- Replace this with your actual JSON URL
     -- here, I get the all card infos and then build the scene from scrach after retreiving the data
     print("setUpDeckBuilderInput")
 
