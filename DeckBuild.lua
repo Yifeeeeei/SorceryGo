@@ -7,32 +7,32 @@ local resource_url = "https://yifeeeeei.github.io/SorceryImages/"
 
 local one_deck_capacity = 1000
 
-local hero_deck_position = {
-    x = 35,
-    y = 2,
-    z = -20
-}
+-- local hero_deck_position = {
+--     x = 35,
+--     y = 2,
+--     z = -20
+-- }
 
-local unit_deck_position = {
-    x = 35,
-    y = 2,
-    z = -15
-}
-local item_deck_position = {
-    x = 35,
-    y = 2,
-    z = 0
-}
-local ability_deck_position = {
-    x = 35,
-    y = 2,
-    z = 10
-}
-local spawn_deck_position = {
-    x = 35,
-    y = 2,
-    z = 20
-}
+-- local unit_deck_position = {
+--     x = 35,
+--     y = 2,
+--     z = -15
+-- }
+-- local item_deck_position = {
+--     x = 35,
+--     y = 2,
+--     z = 0
+-- }
+-- local ability_deck_position = {
+--     x = 35,
+--     y = 2,
+--     z = 10
+-- }
+-- local spawn_deck_position = {
+--     x = 35,
+--     y = 2,
+--     z = 20
+-- }
 
 -- deck builder
 local deck_builder_input
@@ -73,267 +73,267 @@ function onLoad()
     -- setUpTexts()
 end
 
-function createTileButtonAtPostion(position, tileFrontImageUrl, tileBackImageUrl, buttonHint, onClickFunctionName)
-    local tile = spawnObject({
-        type = "Custom_Tile",
-        position = position,
-        scale = {2.4, 2.4, 2.4},
-        rotation = {0, 0, 0},
-        callback_function = function(obj)
-            obj.setLock(true)
-        end
-    })
+-- function createTileButtonAtPostion(position, tileFrontImageUrl, tileBackImageUrl, buttonHint, onClickFunctionName)
+--     local tile = spawnObject({
+--         type = "Custom_Tile",
+--         position = position,
+--         scale = {2.4, 2.4, 2.4},
+--         rotation = {0, 0, 0},
+--         callback_function = function(obj)
+--             obj.setLock(true)
+--         end
+--     })
 
-    tile.setCustomObject({
-        image = tileFrontImageUrl,
-        image_bottom = tileBackImageUrl,
-        thickness = 0.1, -- You can adjust the thickness of the board
-        stackable = false
-    })
+--     tile.setCustomObject({
+--         image = tileFrontImageUrl,
+--         image_bottom = tileBackImageUrl,
+--         thickness = 0.1, -- You can adjust the thickness of the board
+--         stackable = false
+--     })
 
-    tile.createButton({
-        click_function = onClickFunctionName,
-        function_owner = self,
-        label = buttonHint,
-        position = {0, 0.1, 0},
-        rotation = {0, 0, 0},
-        tooltip = buttonHint,
-        width = 600,
-        height = 1200,
-        font_size = 40,
-        color = {0, 0, 0, 0},
-        hover_color = {1, 1, 1, 0.2}
-    })
+--     tile.createButton({
+--         click_function = onClickFunctionName,
+--         function_owner = self,
+--         label = buttonHint,
+--         position = {0, 0.1, 0},
+--         rotation = {0, 0, 0},
+--         tooltip = buttonHint,
+--         width = 600,
+--         height = 1200,
+--         font_size = 40,
+--         color = {0, 0, 0, 0},
+--         hover_color = {1, 1, 1, 0.2}
+--     })
 
-    return tile
-end
+--     return tile
+-- end
 
-function setUpCollectionTiles()
-    local heroTile = createTileButtonAtPostion({
-        x = hero_deck_position.x + 6,
-        y = hero_deck_position.y - 1,
-        z = hero_deck_position.z
-    }, resource_url .. "tts/hero.jpg", resource_url .. "card_back/crad_back2.png", "英雄", "onClickHeroTile")
-    local unitTile = createTileButtonAtPostion({
-        x = unit_deck_position.x + 6,
-        y = unit_deck_position.y - 1,
-        z = unit_deck_position.z
-    }, resource_url .. "tts/unit.jpg", resource_url .. "card_back/crad_back2.png", "生物", "onClickUnitTile")
-    local itemTile = createTileButtonAtPostion({
-        x = item_deck_position.x + 6,
-        y = item_deck_position.y - 1,
-        z = item_deck_position.z
-    }, resource_url .. "tts/item.jpg", resource_url .. "card_back/crad_back2.png", "道具", "onClickItemTile")
-    local abilityTile = createTileButtonAtPostion({
-        x = ability_deck_position.x + 6,
-        y = ability_deck_position.y - 1,
-        z = ability_deck_position.z
-    }, resource_url .. "tts/ability.jpg", resource_url .. "card_back/crad_back2.png", "技能", "onClickAbilityTile")
-    local spawnTile = createTileButtonAtPostion({
-        x = spawn_deck_position.x + 6,
-        y = spawn_deck_position.y - 1,
-        z = spawn_deck_position.z
-    }, resource_url .. "tts/spawn.jpg", resource_url .. "card_back/crad_back2.png", "衍生", "onClickSpawnTile")
+-- function setUpCollectionTiles()
+--     local heroTile = createTileButtonAtPostion({
+--         x = hero_deck_position.x + 6,
+--         y = hero_deck_position.y - 1,
+--         z = hero_deck_position.z
+--     }, resource_url .. "tts/hero.jpg", resource_url .. "card_back/crad_back2.png", "英雄", "onClickHeroTile")
+--     local unitTile = createTileButtonAtPostion({
+--         x = unit_deck_position.x + 6,
+--         y = unit_deck_position.y - 1,
+--         z = unit_deck_position.z
+--     }, resource_url .. "tts/unit.jpg", resource_url .. "card_back/crad_back2.png", "生物", "onClickUnitTile")
+--     local itemTile = createTileButtonAtPostion({
+--         x = item_deck_position.x + 6,
+--         y = item_deck_position.y - 1,
+--         z = item_deck_position.z
+--     }, resource_url .. "tts/item.jpg", resource_url .. "card_back/crad_back2.png", "道具", "onClickItemTile")
+--     local abilityTile = createTileButtonAtPostion({
+--         x = ability_deck_position.x + 6,
+--         y = ability_deck_position.y - 1,
+--         z = ability_deck_position.z
+--     }, resource_url .. "tts/ability.jpg", resource_url .. "card_back/crad_back2.png", "技能", "onClickAbilityTile")
+--     local spawnTile = createTileButtonAtPostion({
+--         x = spawn_deck_position.x + 6,
+--         y = spawn_deck_position.y - 1,
+--         z = spawn_deck_position.z
+--     }, resource_url .. "tts/spawn.jpg", resource_url .. "card_back/crad_back2.png", "衍生", "onClickSpawnTile")
 
-end
+-- end
 
-function onClickHeroTile()
-    print("onClickHeroTile")
-    local hero_card_ids = {}
-    for k, v in pairs(card_table) do
-        if isHero(k) then
-            table.insert(hero_card_ids, k)
-        end
-    end
-    if DEBUGGING then
-        hero_card_ids = {hero_card_ids[1]}
-    end
-    setUpDeck(hero_card_ids, hero_deck_position)
-end
+-- function onClickHeroTile()
+--     print("onClickHeroTile")
+--     local hero_card_ids = {}
+--     for k, v in pairs(card_table) do
+--         if isHero(k) then
+--             table.insert(hero_card_ids, k)
+--         end
+--     end
+--     if DEBUGGING then
+--         hero_card_ids = {hero_card_ids[1]}
+--     end
+--     setUpDeck(hero_card_ids, hero_deck_position)
+-- end
 
-function onClickUnitTile()
-    print("onClickUnitTile")
-    local unit_card_ids = {}
-    for k, v in pairs(card_table) do
-        if isUnit(k) then
-            table.insert(unit_card_ids, k)
-        end
-    end
-    if DEBUGGING then
-        unit_card_ids = {unit_card_ids[1]}
-    end
-    setUpDeck(unit_card_ids, unit_deck_position)
-end
+-- function onClickUnitTile()
+--     print("onClickUnitTile")
+--     local unit_card_ids = {}
+--     for k, v in pairs(card_table) do
+--         if isUnit(k) then
+--             table.insert(unit_card_ids, k)
+--         end
+--     end
+--     if DEBUGGING then
+--         unit_card_ids = {unit_card_ids[1]}
+--     end
+--     setUpDeck(unit_card_ids, unit_deck_position)
+-- end
 
-function onClickItemTile()
-    print("onClickItemTile")
-    local item_card_ids = {}
-    for k, v in pairs(card_table) do
-        if isItem(k) then
-            table.insert(item_card_ids, k)
-        end
-    end
-    if DEBUGGING then
-        item_card_ids = {item_card_ids[1]}
-    end
-    setUpDeck(item_card_ids, item_deck_position)
-end
+-- function onClickItemTile()
+--     print("onClickItemTile")
+--     local item_card_ids = {}
+--     for k, v in pairs(card_table) do
+--         if isItem(k) then
+--             table.insert(item_card_ids, k)
+--         end
+--     end
+--     if DEBUGGING then
+--         item_card_ids = {item_card_ids[1]}
+--     end
+--     setUpDeck(item_card_ids, item_deck_position)
+-- end
 
-function onClickAbilityTile()
-    print("onClickAbilityTile")
-    local ability_card_ids = {}
-    for k, v in pairs(card_table) do
-        if isAbility(k) then
-            table.insert(ability_card_ids, k)
-        end
-    end
-    if DEBUGGING then
-        ability_card_ids = {ability_card_ids[1]}
-    end
-    setUpDeck(ability_card_ids, ability_deck_position)
-end
+-- function onClickAbilityTile()
+--     print("onClickAbilityTile")
+--     local ability_card_ids = {}
+--     for k, v in pairs(card_table) do
+--         if isAbility(k) then
+--             table.insert(ability_card_ids, k)
+--         end
+--     end
+--     if DEBUGGING then
+--         ability_card_ids = {ability_card_ids[1]}
+--     end
+--     setUpDeck(ability_card_ids, ability_deck_position)
+-- end
 
-function onClickSpawnTile()
-    print("onClickSpawnTile")
-    local spawn_card_ids = {}
-    for k, v in pairs(card_table) do
-        if isSpawned(k) then
-            table.insert(spawn_card_ids, k)
-        end
-    end
-    if DEBUGGING then
-        spawn_card_ids = {spawn_card_ids[1]}
-    end
-    setUpDeck(spawn_card_ids, spawn_deck_position)
-end
+-- function onClickSpawnTile()
+--     print("onClickSpawnTile")
+--     local spawn_card_ids = {}
+--     for k, v in pairs(card_table) do
+--         if isSpawned(k) then
+--             table.insert(spawn_card_ids, k)
+--         end
+--     end
+--     if DEBUGGING then
+--         spawn_card_ids = {spawn_card_ids[1]}
+--     end
+--     setUpDeck(spawn_card_ids, spawn_deck_position)
+-- end
 
-function setUpTexts()
-    -- deck builder
-    spawnText("组卡器", {
-        x = deck_builder_input_position.x,
-        y = deck_builder_input_position.y + 0.5,
-        z = deck_builder_input_position.z - 11
-    }, 4)
-    -- hero
-    spawnText("英雄", {
-        x = hero_deck_position.x + 3,
-        y = hero_deck_position.y - 1,
-        z = hero_deck_position.z
-    }, 2)
-    -- unit
-    spawnText("生物", {
-        x = unit_deck_position.x + 3,
-        y = unit_deck_position.y - 1,
-        z = unit_deck_position.z
-    }, 2)
-    -- item
-    spawnText("道具", {
-        x = item_deck_position.x + 3,
-        y = item_deck_position.y - 1,
-        z = item_deck_position.z
-    }, 2)
-    -- ability
-    spawnText("技能", {
-        x = ability_deck_position.x + 3,
-        y = ability_deck_position.y - 1,
-        z = ability_deck_position.z
-    }, 2)
-    -- spawn
-    spawnText("衍生", {
-        x = spawn_deck_position.x + 3,
-        y = spawn_deck_position.y - 1,
-        z = spawn_deck_position.z
-    }, 2)
+-- function setUpTexts()
+--     -- deck builder
+--     spawnText("组卡器", {
+--         x = deck_builder_input_position.x,
+--         y = deck_builder_input_position.y + 0.5,
+--         z = deck_builder_input_position.z - 11
+--     }, 4)
+--     -- hero
+--     spawnText("英雄", {
+--         x = hero_deck_position.x + 3,
+--         y = hero_deck_position.y - 1,
+--         z = hero_deck_position.z
+--     }, 2)
+--     -- unit
+--     spawnText("生物", {
+--         x = unit_deck_position.x + 3,
+--         y = unit_deck_position.y - 1,
+--         z = unit_deck_position.z
+--     }, 2)
+--     -- item
+--     spawnText("道具", {
+--         x = item_deck_position.x + 3,
+--         y = item_deck_position.y - 1,
+--         z = item_deck_position.z
+--     }, 2)
+--     -- ability
+--     spawnText("技能", {
+--         x = ability_deck_position.x + 3,
+--         y = ability_deck_position.y - 1,
+--         z = ability_deck_position.z
+--     }, 2)
+--     -- spawn
+--     spawnText("衍生", {
+--         x = spawn_deck_position.x + 3,
+--         y = spawn_deck_position.y - 1,
+--         z = spawn_deck_position.z
+--     }, 2)
 
-end
+-- end
 
-function spawnText(text, position, scale)
-    local parameters = {
-        type = "3DText",
-        position = {
-            x = position.x,
-            y = position.y,
-            z = position.z
-        },
-        rotation = {
-            x = 90,
-            y = 180,
-            z = 0
-        },
-        scale = {
-            x = scale,
-            y = scale,
-            z = scale
-        },
-        callback_function = function(obj)
-            obj.setLock(true)
-        end
+-- function spawnText(text, position, scale)
+--     local parameters = {
+--         type = "3DText",
+--         position = {
+--             x = position.x,
+--             y = position.y,
+--             z = position.z
+--         },
+--         rotation = {
+--             x = 90,
+--             y = 180,
+--             z = 0
+--         },
+--         scale = {
+--             x = scale,
+--             y = scale,
+--             z = scale
+--         },
+--         callback_function = function(obj)
+--             obj.setLock(true)
+--         end
 
-    }
-    local text_obj = spawnObject(parameters)
-    text_obj.setValue(text)
-end
+--     }
+--     local text_obj = spawnObject(parameters)
+--     text_obj.setValue(text)
+-- end
 
-function setUpGameRule()
-    local pdf_url = resource_url .. "GameRule.pdf"
-    local obj = spawnAPDF(pdf_url, "Game Rule", "Game Rule", {
-        x = 1000,
-        y = 10,
-        z = 0
-    }, 2.0)
-    obj.setPosition(game_rule_position)
-end
+-- function setUpGameRule()
+--     local pdf_url = resource_url .. "GameRule.pdf"
+--     local obj = spawnAPDF(pdf_url, "Game Rule", "Game Rule", {
+--         x = 1000,
+--         y = 10,
+--         z = 0
+--     }, 2.0)
+--     obj.setPosition(game_rule_position)
+-- end
 
-function spawnAPDF(url, name, description, position, scale)
-    local myjson = [[
-        {
-          "Name": "Custom_PDF",
-          "Transform": {
-            "posX": ]] .. position.x .. [[,
-            "posY": ]] .. position.y .. [[,
-            "posZ": ]] .. position.z .. [[,
-            "rotX": 0.0,
-            "rotY": 0.0,
-            "rotZ": 0.0,
-            "scaleX": ]] .. scale .. [[,
-            "scaleY": ]] .. scale .. [[,
-            "scaleZ": ]] .. scale .. [[
-          },
-          "Nickname": "]] .. name .. [[",
-          "Description": "]] .. description .. [[",
-          "GMNotes": "",
-          "ColorDiffuse": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "Locked": false,
-          "Grid": false,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "HideWhenFaceDown": false,
-          "Hands": false,
-          "CustomPDF": {
-            "PDFUrl": "]] .. url .. [[",
-            "PDFPassword": "",
-            "PDFPage": 0,
-            "PDFPageOffset": 0
-          },
-          "XmlUI": "<!-- -->",
-          "LuaScript": "--foo",
-          "LuaScriptState": "",
-          "GUID": "pdf001"
-        }]]
-    local obj = spawnObjectJSON({
-        json = myjson,
-        position = {0, 5, 0}
-    })
-    return obj
-end
+-- function spawnAPDF(url, name, description, position, scale)
+--     local myjson = [[
+--         {
+--           "Name": "Custom_PDF",
+--           "Transform": {
+--             "posX": ]] .. position.x .. [[,
+--             "posY": ]] .. position.y .. [[,
+--             "posZ": ]] .. position.z .. [[,
+--             "rotX": 0.0,
+--             "rotY": 0.0,
+--             "rotZ": 0.0,
+--             "scaleX": ]] .. scale .. [[,
+--             "scaleY": ]] .. scale .. [[,
+--             "scaleZ": ]] .. scale .. [[
+--           },
+--           "Nickname": "]] .. name .. [[",
+--           "Description": "]] .. description .. [[",
+--           "GMNotes": "",
+--           "ColorDiffuse": {
+--             "r": 1.0,
+--             "g": 1.0,
+--             "b": 1.0
+--           },
+--           "Locked": false,
+--           "Grid": false,
+--           "Snap": true,
+--           "IgnoreFoW": false,
+--           "Autoraise": true,
+--           "Sticky": true,
+--           "Tooltip": true,
+--           "GridProjection": false,
+--           "HideWhenFaceDown": false,
+--           "Hands": false,
+--           "CustomPDF": {
+--             "PDFUrl": "]] .. url .. [[",
+--             "PDFPassword": "",
+--             "PDFPage": 0,
+--             "PDFPageOffset": 0
+--           },
+--           "XmlUI": "<!-- -->",
+--           "LuaScript": "--foo",
+--           "LuaScriptState": "",
+--           "GUID": "pdf001"
+--         }]]
+--     local obj = spawnObjectJSON({
+--         json = myjson,
+--         position = {0, 5, 0}
+--     })
+--     return obj
+-- end
 
 -- this function is called after fetching the json data
 
@@ -355,7 +355,7 @@ function setUpDeckBuilderInput()
         type = "notecard",
         position = {
             x = deck_builder_input_position.x,
-            y = deck_builder_input_position.y - 0.05,
+            y = deck_builder_input_position.y - 0.1,
             z = deck_builder_input_position.z
         },
         scale = {
@@ -514,65 +514,65 @@ function setUpDeck(card_ids, position)
 end
 
 -- this function has been deprecated
-function setUpAllDecks()
-    print("setUpAllDecks")
-    local hero_card_ids = {}
-    local unit_card_ids = {}
-    local item_card_ids = {}
-    local ability_card_ids = {}
-    local spawn_card_ids = {}
-    local count = 0
-    for _ in pairs(card_table) do
-        count = count + 1
-    end
-    print("all cards: ", count)
+-- function setUpAllDecks()
+--     print("setUpAllDecks")
+--     local hero_card_ids = {}
+--     local unit_card_ids = {}
+--     local item_card_ids = {}
+--     local ability_card_ids = {}
+--     local spawn_card_ids = {}
+--     local count = 0
+--     for _ in pairs(card_table) do
+--         count = count + 1
+--     end
+--     print("all cards: ", count)
 
-    for k, v in pairs(card_table) do
-        if isHero(k) then
-            table.insert(hero_card_ids, k)
-        elseif isSpawned(k) then
-            table.insert(spawn_card_ids, k)
-        elseif isUnit(k) then
-            table.insert(unit_card_ids, k)
-        elseif isItem(k) then
-            table.insert(item_card_ids, k)
-        elseif isAbility(k) then
-            table.insert(ability_card_ids, k)
-        end
-    end
+--     for k, v in pairs(card_table) do
+--         if isHero(k) then
+--             table.insert(hero_card_ids, k)
+--         elseif isSpawned(k) then
+--             table.insert(spawn_card_ids, k)
+--         elseif isUnit(k) then
+--             table.insert(unit_card_ids, k)
+--         elseif isItem(k) then
+--             table.insert(item_card_ids, k)
+--         elseif isAbility(k) then
+--             table.insert(ability_card_ids, k)
+--         end
+--     end
 
-    table.sort(hero_card_ids)
-    table.sort(unit_card_ids)
-    table.sort(item_card_ids)
-    table.sort(ability_card_ids)
-    table.sort(spawn_card_ids)
+--     table.sort(hero_card_ids)
+--     table.sort(unit_card_ids)
+--     table.sort(item_card_ids)
+--     table.sort(ability_card_ids)
+--     table.sort(spawn_card_ids)
 
-    -- when testing, cut each deck to only 1 card
-    if DEBUGGING then
-        hero_card_ids = {hero_card_ids[1]}
-        unit_card_ids = {unit_card_ids[1]}
-        item_card_ids = {item_card_ids[1]}
-        ability_card_ids = {ability_card_ids[1]}
-        spawn_card_ids = {spawn_card_ids[1]}
-    end
+--     -- when testing, cut each deck to only 1 card
+--     if DEBUGGING then
+--         hero_card_ids = {hero_card_ids[1]}
+--         unit_card_ids = {unit_card_ids[1]}
+--         item_card_ids = {item_card_ids[1]}
+--         ability_card_ids = {ability_card_ids[1]}
+--         spawn_card_ids = {spawn_card_ids[1]}
+--     end
 
-    print("hero cards: ", #hero_card_ids)
-    print("unit cards: ", #unit_card_ids)
-    print("item cards: ", #item_card_ids)
-    print("ability cards: ", #ability_card_ids)
-    print("spawn cards: ", #spawn_card_ids)
+--     print("hero cards: ", #hero_card_ids)
+--     print("unit cards: ", #unit_card_ids)
+--     print("item cards: ", #item_card_ids)
+--     print("ability cards: ", #ability_card_ids)
+--     print("spawn cards: ", #spawn_card_ids)
 
-    print("Setting up hero deck")
-    setUpDeck(hero_card_ids, hero_deck_position)
-    print("Setting up unit deck")
-    setUpDeck(unit_card_ids, unit_deck_position)
-    print("Setting up item deck")
-    setUpDeck(item_card_ids, item_deck_position)
-    print("Setting up ability deck")
-    setUpDeck(ability_card_ids, ability_deck_position)
-    print("Setting up spawn deck")
-    setUpDeck(spawn_card_ids, spawn_deck_position)
-end
+--     print("Setting up hero deck")
+--     setUpDeck(hero_card_ids, hero_deck_position)
+--     print("Setting up unit deck")
+--     setUpDeck(unit_card_ids, unit_deck_position)
+--     print("Setting up item deck")
+--     setUpDeck(item_card_ids, item_deck_position)
+--     print("Setting up ability deck")
+--     setUpDeck(ability_card_ids, ability_deck_position)
+--     print("Setting up spawn deck")
+--     setUpDeck(spawn_card_ids, spawn_deck_position)
+-- end
 
 function spawnDeck(card_ids, position, need_tag)
     local card_face_urls = {}
