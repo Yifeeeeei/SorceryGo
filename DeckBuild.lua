@@ -355,7 +355,7 @@ function setUpDeckBuilderInput()
         type = "notecard",
         position = {
             x = deck_builder_input_position.x,
-            y = deck_builder_input_position.y - 0.1,
+            y = deck_builder_input_position.y,
             z = deck_builder_input_position.z
         },
         scale = {
@@ -373,7 +373,7 @@ function setUpDeckBuilderInput()
     notecard.createInput({
         position = {
             x = 0,
-            y = 3,
+            y = 3 + 10,
             z = 0
         },
         width = 500,
