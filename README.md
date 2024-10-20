@@ -1,4 +1,4 @@
-# SorceryGo
+# ArcaneGo
 
 requires go >= 1.22
 
